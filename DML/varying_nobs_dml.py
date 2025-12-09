@@ -574,7 +574,7 @@ def plot_both_panels(timestamp_e, timestamp_f, output_file='nobs_both_panels.png
     
     plt.tight_layout()
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f"✓ Saved combined plot: {output_file}")
+    print(f"Saved combined plot: {output_file}")
     plt.show()
     
     return df_e, df_f
@@ -614,7 +614,7 @@ if __name__ == '__main__':
                 nobs_vals = np.array([25, 50, 75, 100, 125, 150, 175, 200])
             else:
                 nobs_vals = np.array([0, 250, 500, 750, 1000, 1250, 1500, 2000])
-            print("⚡ ULTRA-QUICK MODE")
+            print("ULTRA-QUICK MODE")
         elif args.quick:
             n_sims = 10
             lambda_bin = 20
@@ -622,12 +622,12 @@ if __name__ == '__main__':
                 nobs_vals = np.arange(25, 210, 15)
             else:
                 nobs_vals = np.arange(0, 2100, 150)
-            print("⚡ QUICK MODE")
+            print("QUICK MODE")
         else:
             n_sims = args.n_sims
             lambda_bin = args.lambda_bin
             nobs_vals = None  # Use defaults
-            print(f"🐢 FULL MODE: {n_sims} sims, {lambda_bin} lambdas")
+            print(f"FULL MODE: {n_sims} sims, {lambda_bin} lambdas")
         
         use_fast = not args.use_slow_dml
         
