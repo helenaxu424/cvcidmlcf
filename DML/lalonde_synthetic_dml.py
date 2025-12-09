@@ -283,26 +283,24 @@ with open(dir_path + filename + ".txt", "w") as f:
     
     f.write("Interpretation:\n")
     if lambda_opt_mean < 0.1:
-        f.write("  ⚠️  Low λ - observational data not helpful (high bias)\n")
+        f.write("  Low λ - observational data not helpful (high bias)\n")
     elif lambda_opt_mean > 0.8:
-        f.write("  ✓ High λ - observational data strongly weighted\n")
+        f.write("  High λ - observational data strongly weighted\n")
     else:
-        f.write("  → Moderate λ - partial use of observational data\n")
+        f.write("  Moderate λ - partial use of observational data\n")
     
     if ours_cv_rmse < exp_only_rmse:
         improvement = (1 - ours_cv_rmse / exp_only_rmse) * 100
-        f.write(f"  ✓ CVCI-DML improves over exp-only by {improvement:.1f}%\n")
+        f.write(f"  CVCI-DML improves over exp-only by {improvement:.1f}%\n")
     else:
         degradation = (ours_cv_rmse / exp_only_rmse - 1) * 100
-        f.write(f"  ⚠️  CVCI-DML worse than exp-only by {degradation:.1f}%\n")
+        f.write(f" CVCI-DML worse than exp-only by {degradation:.1f}%\n")
 
 print(f"\nSaved results to: {dir_path + filename}.txt")
 print("\nResults Summary:")
-print("="*80)
 print(f"True treatment effect: {true_te:.2f}")
 print(f"Selected λ: {lambda_opt_mean:.3f} ± {lambda_opt_std:.3f}")
 print(f"\nRMSE:")
 print(f"  Ours (CVCI-DML): {ours_cv_rmse:.2f}")
 print(f"  Exp only:        {exp_only_rmse:.2f}")
 print(f"  Obs only:        {obs_only_rmse:.2f}")
-print("="*80)
