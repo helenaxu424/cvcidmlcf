@@ -30,9 +30,7 @@ def run_experiment(group, variables, n_sims=100):
     # Note: n_sims is hardcoded in the script, not a command line arg
     # You'd need to modify lalonde_synthetic_dml.py to accept --n-sims
     
-    print(f"\n{'='*80}")
     print(f"Running experiment: {group} with variables: {variables if variables else 'None'}")
-    print(f"{'='*80}")
     
     result = subprocess.run(cmd)
     
@@ -69,9 +67,7 @@ def main():
         }
     ]
     
-    print(f"\n{'='*80}")
     print(f"RUNNING SYNTHETIC DML EXPERIMENTS FOR {args.group.upper()}")
-    print(f"{'='*80}")
     print(f"\nWill run {len(experiments)} experiments:")
     for exp in experiments:
         print(f"  - {exp['name']}")
@@ -88,18 +84,13 @@ def main():
         })
     
     # Summary
-    print(f"\n{'='*80}")
     print("EXPERIMENT SUMMARY")
-    print(f"{'='*80}")
     
     for result in results:
-        status = "✓ SUCCESS" if result['success'] else "✗ FAILED"
+        status = "SUCCESS" if result['success'] else "✗ FAILED"
         print(f"{status}: {result['name']}")
     
     # Provide visualization command
-    print(f"\n{'='*80}")
-    print("NEXT STEPS: VISUALIZE RESULTS")
-    print(f"{'='*80}")
     print("\nTo create plots, find the JSON files in the date directory and run:")
     print("\npython plot_synthetic_dml_results.py \\")
     print(f"    ./YYYY-MM-DD/lalonde_synthetic_dml_{args.group}_*.json \\")
