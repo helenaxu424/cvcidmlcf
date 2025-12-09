@@ -453,11 +453,11 @@ if __name__ == '__main__':
     parser.add_argument('--n-sims', type=int, default=100)
     parser.add_argument('--lambda-bin', type=int, default=50)
     parser.add_argument('--ultra-quick', action='store_true',
-                       help='Ultra-fast: 5 sims, 5 epsilons, 10 lambdas (~5 min)')
+                       help='Ultra-fast: 5 sims, 5 epsilons, 10 lambdas')
     parser.add_argument('--quick', action='store_true',
-                       help='Quick: 10 sims, 6 epsilons, 15 lambdas (~20 min)')
+                       help='Quick: 10 sims, 6 epsilons, 15 lambdas')
     parser.add_argument('--medium', action='store_true',
-                       help='Medium: 50 sims, 21 epsilons, 20 lambdas (~7 hours)')
+                       help='Medium: 50 sims, 21 epsilons, 20 lambdas')
     parser.add_argument('--use-slow-dml', action='store_true',
                        help='Use full DML (100 trees) instead of fast (50 trees, limited depth)')
     
@@ -475,22 +475,22 @@ if __name__ == '__main__':
             n_sims = 5
             lambda_bin = 10
             epsilon_vals = np.linspace(0, 0.6, 5)  # CVCI: 0 to 0.6
-            print("⚡ ULTRA-QUICK MODE (~5 min)")
+            print("ULTRA-QUICK MODE")
         elif args.quick:
             n_sims = 10
             lambda_bin = 15
             epsilon_vals = np.linspace(0, 0.6, 6)  # CVCI: 0 to 0.6
-            print("⚡ QUICK MODE (~20 min)")
+            print("QUICK MODE")
         elif args.medium:
             n_sims = 50
             lambda_bin = 20
             epsilon_vals = np.linspace(0, 0.6, 21)  # CVCI: 0 to 0.6
-            print("⏱️  MEDIUM MODE (~7 hours)")
+            print("MEDIUM MODE")
         else:
             n_sims = args.n_sims
             lambda_bin = args.lambda_bin
             epsilon_vals = np.linspace(0, 0.6, 21)  # CVCI: 0 to 0.6
-            print(f"🐢 FULL MODE (~{n_sims * lambda_bin // 10} hours)")
+            print(f"FULL MODE")
         
         use_fast = not args.use_slow_dml
         if use_fast:
